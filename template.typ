@@ -138,7 +138,10 @@
       it
     }
   }
-  show cite: set text(fill: ACMPurple)
+  show cite: it => {
+    show regex("[0-9]+"): set text(fill: ACMPurple)
+    it
+  }
 
   show math.equation: set text(font: mathFont)
 
@@ -241,6 +244,9 @@
       })
     })
 
+    line(length: 100%, stroke: 0.5pt)
+    v(1.0em)
+
     // Display abstract
     if abstract != none {
       set par(justify: true, spacing: 0.555555em, first-line-indent: 9.7pt)
@@ -294,9 +300,13 @@
         #counter(page).display((..nums) => [
           #link((page: nums.pos().last(), x:0pt, y:0pt))[#nums.pos().last()]
           page#if(nums.pos().last() > 1) { [s] }.
-        ],both: true)
+        ],both: true)\
         #link("https://doi.org/" + acmDOI)
       ])))
+
+    v(1.0em)
+    line(length: 100%, stroke: 0.5pt)
+
 
     // place footer
     set text(size: 8pt)
@@ -375,7 +385,8 @@
     justify: true,
     leading: 5.35pt,
     first-line-indent: 9.5pt,
-    spacing: 5.35pt)
+    spacing: 5.35pt
+  )
 
   show figure.caption: it => {
     set text(size: 9pt, font: sfFont, spacing: 95%)
@@ -395,7 +406,7 @@
   show raw: it => text(font: ttFont, it)
   show raw.where(block: true): it => text(size: 8pt, it)
 
-  set bibliography(style: "ACM-Reference-Format-author-year.csl")
+  set bibliography(style: "association-for-computing-machinery")
 
   // Display content
   body
