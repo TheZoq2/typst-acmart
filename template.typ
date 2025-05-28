@@ -1,6 +1,6 @@
 #let mainFont = "Linux Libertine O"
 #let sfFont = "Linux Biolinum O"
-#let ttFont = "Inconsolatazi4"
+#let ttFont = "Source Code Pro"
 #let mathFont = "Libertinus Math"
 
 #let bigskipamount = 12pt
