@@ -1,6 +1,6 @@
 #let mainFont = "Linux Libertine O"
 #let sfFont = "Linux Biolinum O"
-#let ttFont = "Source Code Pro"
+#let ttFont = "Noto Sans Mono"
 #let mathFont = "Libertinus Math"
 
 #let bigskipamount = 12pt
@@ -71,6 +71,11 @@
     (
       name: "Proceedings of the ACM on Programming Languages",
       nameShort: "Proc. ACM Program. Lang."
+    )
+  } else if acmJournal == "TRETS" {
+    (
+      name: "Transactions on Reconfigurable Technology and Systems",
+      nameShort: "Trans. ACM Reconfigurable Technol. Syst."
     )
   } else {
     none
@@ -143,7 +148,7 @@
     it
   }
 
-  show math.equation: set text(font: mathFont)
+  // show math.equation: set text(font: mathFont)
 
   // Configure the page.
   set page(
@@ -390,20 +395,29 @@
 
   show figure.caption: it => {
     set text(size: 9pt, font: sfFont, spacing: 95%)
-    align(center,
-      pad(bottom: 1.75em,
-        stack(dir: ltr,
-          [#it.supplement~#context it.counter.display(it.numbering).],
-          h(.5em),
-          it.body
-        )
-      )
-    )
+    set align(center)
+    box({
+      set align(left)
+      (
+         [#it.supplement~#context it.counter.display(it.numbering).],
+         h(.5em),
+         it.body
+      ).join() 
+    })
+    // align(center,
+    //   pad(bottom: 1.75em,
+    //     stack(dir: ltr,
+    //       [#it.supplement~#context it.counter.display(it.numbering).],
+    //       h(.5em),
+    //       it.body
+    //     )
+    //   )
+    // )
   }
 
   set figure(gap: 1.125em)
 
-  show raw: it => text(font: ttFont, it)
+  show raw: it => text(font: ttFont, spacing: 100%, it)
   show raw.where(block: true): it => text(size: 8pt, it)
 
   set bibliography(style: "association-for-computing-machinery")
